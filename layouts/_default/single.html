@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ .Site.Title }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="{{ .Params.themeColor }}" />
+    <meta name="description" content="{{ .Params.description | default
+    "my amazing website" }}" />
+    <meta property="og:title" content="{{ .Title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ .Title }}" />
+    <meta name="twitter:description" content="{{ .Params.twitter_description |
+    default "my amazing website (pretty boring)" }}" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon.png" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <div class="navleft terminal-prompt">
+          <a href="/">{{ .Site.Params.author | default "lurk" }}</a>
+        </div>
+        <div>
+          <a class="switch" href="/about">about/</a>
+          <a class="switch" href="/gallery">gallery/</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="onload">
+        <h1 id="{{ .Slug }}">{{ .Title }}</h1>
+        {{ .Content }}
+      </div>
+    </div>
+  </body>
+</html>
