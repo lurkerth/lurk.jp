@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ .Site.Title }}</title>
+</head>
+<body>
+    {{ $subfolder := .Get "folder" | default "" }}
+    {{ $path := path.Join "static/images" $subfolder }}
+    {{ $imageFiles := readDir $path }}
+    {{ $imageCount := 0 }}
+    {{ $descriptions := site.Data.gallery_descriptions }}
+
+    {{ range $imageFiles }}
+        {{ $ext := path.Ext .Name | lower }}
+        {{ if in (slice ".jpg" ".jpeg" ".png" ".webp" ".gif") $ext }}
+            {{ $imageCount = add $imageCount 1 }}
+        {{ end }}
+    {{ end }}
+
+    <div class="hugo-gallery hugo-gallery-tight {{ cond (eq $imageCount 1) "single" (cond (eq $imageCount 2) "double" "") }}">
+        {{ range $imageFiles }}
+            {{ $ext := path.Ext .Name | lower }}
+            {{ if in (slice ".jpg" ".jpeg" ".png" ".webp" ".gif") $ext }}
+                {{ $imageName := replaceRE "\\..*$" "" .Name }}
+                {{ $fullPath := cond (eq $subfolder "") .Name (printf "%s/%s" $subfolder .Name) }}
+                <div class="gallery-item">
+                    <a href="/images/{{ $subfolder }}{{ .Name }}" class="image-link">
+                        <img src="/images/{{ $subfolder }}{{ .Name }}" alt="{{ $imageName }}" loading="lazy" class="tight-image">
+                        <div class="image-label">
+                            {{ index $descriptions $fullPath | default ($imageName | humanize) }}
+                        </div>
+                    </a>
+                </div>
+            {{ end }}
+        {{ end }}
+    </div>
+</body>
+</html>
