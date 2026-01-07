@@ -1,0 +1,8 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "lurk's internet corner"
+
+[params]
+  author = "lurk"
+[markup.goldmark.renderer]
+  unsafe= true
