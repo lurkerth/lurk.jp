@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ .Params.description | default .Site.Title }}" />
+    <meta property="og:title" content="{{ .Site.Title }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:description" content="{{ .Params.description | default .Site.Title }}" />
+    <title>{{ .Site.Title }}</title>
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">skip to content</a>
+    <nav class="menu">
+      <a href="/" class="active">home</a>
+      <a href="/blog">blog</a>
+      <a href="/about">about</a>
+      <a href="/gallery">gallery</a>
+      <a href="/rss">rss</a>
+    </nav>
+    <main id="content">
+      <h1>lurk</h1>
+      <p>I like breaking down systems and networks to rebuild them faster, cleaner, and smarter. MikroTiks are my playground — I'm always tweaking, tuning, and pushing them to the limit.</p>
+      <p>I care about privacy and love mixing <a href="https://en.wikipedia.org/wiki/Open_source" rel="noopener noreferrer" target="_blank">open source</a>, the Linux kernel, and the Apple ecosystem. At the end of the day, I keep things simple: clean, functional, and efficient.</p>
+    </main>
+    <footer>
+      © 2026 <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="noopener noreferrer" target="_blank">GPL-3.0</a>
+      <br><i class="the-end"></i>
+    </footer>
+  </body>
+</html>

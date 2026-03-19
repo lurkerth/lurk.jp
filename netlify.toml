@@ -1,0 +1,3 @@
+[build]
+  command = "hugo --minify && bash generate_redirects.sh"
+  publish = "public"

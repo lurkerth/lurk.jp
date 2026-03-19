@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ .Params.description | default .Site.Title }}" />
+    <meta property="og:title" content="{{ .Title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:description" content="{{ .Params.description | default .Site.Title }}" />
+    <title>{{ .Title }} — {{ .Site.Title }}</title>
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">skip to content</a>
+    <nav class="menu">
+      <a href="/">home</a>
+      <a href="/blog" class="active">blog</a>
+      <a href="/about">about</a>
+      <a href="/gallery">gallery</a>
+      <a href="/rss">rss</a>
+    </nav>
+    <main id="content">
+      <article>
+        <header>
+          <h1>{{ .Title }}</h1>
+          <strong>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 02, 2006" | lower }}</time>
+            {{ with .Params.tags }}
+              /
+              {{ range $i, $tag := . }}
+                {{- if $i }}, {{ end -}}
+                <a href="/tags/{{ $tag | urlize }}/">#{{ $tag }}</a>
+              {{- end }}
+            {{ end }}
+          </strong>
+        </header>
+        {{ .Content }}
+        <div aria-hidden="true">⁂</div>
+      </article>
+    </main>
+    <footer>© 2026 <a href="https://www.gnu.org/licenses/gpl-3.0.html" rel="noopener noreferrer" target="_blank">GPL-3.0</a><br><i class="the-end"></i></footer>
+  </body>
+</html>

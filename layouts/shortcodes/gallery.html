@@ -1,0 +1,27 @@
+{{ $subfolder := .Get "folder" | default "" }}
+{{ $path := path.Join "static/images" $subfolder }}
+{{ $files := readDir $path }}
+{{ $exts := slice ".jpg" ".jpeg" ".png" ".webp" ".gif" }}
+{{ $descriptions := site.Data.gallery_descriptions }}
+{{ $count := 0 }}
+
+{{ range $files }}
+  {{ if in $exts (path.Ext .Name | lower) }}
+    {{ $count = add $count 1 }}
+  {{ end }}
+{{ end }}
+
+<div class="hugo-gallery-tight {{ cond (eq $count 1) "single" (cond (eq $count 2) "double" "") }}">
+  {{ range $files }}
+    {{ if in $exts (path.Ext .Name | lower) }}
+      {{ $name := replaceRE "\\..*$" "" .Name }}
+      {{ $key := cond (eq $subfolder "") .Name (printf "%s/%s" $subfolder .Name) }}
+      <div class="gallery-item">
+        <a href="/images/{{ $subfolder }}{{ .Name }}" class="image-link">
+          <img src="/images/{{ $subfolder }}{{ .Name }}" alt="{{ $name }}" loading="lazy" class="tight-image">
+          <div class="image-label">{{ index $descriptions $key | default ($name | humanize) }}</div>
+        </a>
+      </div>
+    {{ end }}
+  {{ end }}
+</div>
