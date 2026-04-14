@@ -1,0 +1,10 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="{{ .Params.description | default .Description | default .Site.Title }}" />
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:description" content="{{ .Params.description | default .Description | default .Site.Title }}" />
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+<link rel="canonical" href="{{ .Permalink }}" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

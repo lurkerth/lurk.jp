@@ -1,0 +1,7 @@
+<a class="skip-link" href="#content">skip to content</a>
+<nav class="menu">
+  <a href="/"{{ if .IsHome }} class="active"{{ end }}>home</a>
+  <a href="/blog"{{ if eq .Section "blog" }} class="active"{{ end }}>blog</a>
+  <a href="/about"{{ if eq .Slug "about" }} class="active"{{ end }}>about</a>
+  <a href="/rss"{{ if eq .Slug "rss" }} class="active"{{ end }}>rss</a>
+</nav>
