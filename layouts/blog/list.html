@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{ partial "head.html" . }}
+    {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="RSS" href="{{ .Permalink }}" />{{ end }}
+  </head>
+  <body>
+    {{ partial "nav.html" . }}
+    <main id="content">
+      <h1>{{ .Title }}</h1>
+      {{ range .Pages.GroupByDate "2006" }}
+        <h2>{{ .Key }}</h2>
+        <ul>
+          {{ range .Pages }}
+            <li>
+              <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+              <br>
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 02, 2006" | lower }}</time>
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+  </body>
+</html>

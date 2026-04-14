@@ -1,0 +1,20 @@
+baseURL = "https://lurk.jp/"
+languageCode = "en-us"
+title = "lurk's internet corner"
+buildFuture = true
+disableHugoGeneratorInject = true
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[params]
+  author = "lurk"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[taxonomies]
+  tag = "tags"
